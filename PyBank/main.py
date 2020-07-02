@@ -8,7 +8,8 @@ total_months = 0
 net_profit_loss = 0
 
 raw_pl_list = []
-pl_change_list = []
+pl_list1 = []
+pl_list2 = []
 
 print("Financial Analysis")
 print("---------------------------")
@@ -26,19 +27,37 @@ with open(file_path, "r") as bankfile:
         #Pull all profit/loss values from each month and put them in the raw_pl_list
         raw_pl_list.append(row[1])
 
-    first_pl_list = raw_pl_list.pop()
-    second_pl_list = raw_pl_list.pop(0)
+    
+    #Check creation of raw list
+    print(raw_pl_list)
+    
+    print("---------------------------")
+    
+    #Creating the first zip list from the raw data list
+    pl_list1 = raw_pl_list.copy()
+    pl_list1.pop()
 
-    #Store the first list value in a variable
-    first_pl_value = raw_pl_list[0]
+    print(pl_list1)
+    
+    #Creating the second zip list from the raw data list
+    print("---------------------------")
 
-    while x < len(raw_pl_list):
-        print(raw_pl_list)
-        x = x+1
+    pl_list2 = raw_pl_list.copy()
+    pl_list2.pop(0)
+    
+    print(pl_list2)
+    
+    print("---------------------------")
+
+    pl_difference = []
+
+    pl_zip = zip(pl_list1, pl_list2)
+    for pl_list1, pl_list2 in pl_zip:
+            pl_difference.append(float(pl_list2)-float(pl_list1))
 
 
     print("Total Months: " + str(total_months))
     print("Total Profit/Loss: $" + str(net_profit_loss))
-    print(pl_change_list)
+    print(pl_difference)
 
 bankfile.close()
