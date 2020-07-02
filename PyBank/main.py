@@ -29,35 +29,48 @@ with open(file_path, "r") as bankfile:
 
     
     #Check creation of raw list
-    print(raw_pl_list)
-    
-    print("---------------------------")
+    # print(raw_pl_list)
     
     #Creating the first zip list from the raw data list
     pl_list1 = raw_pl_list.copy()
     pl_list1.pop()
 
-    print(pl_list1)
+    #Check creation of pl_list1
+    # print(pl_list1)
     
     #Creating the second zip list from the raw data list
-    print("---------------------------")
 
     pl_list2 = raw_pl_list.copy()
     pl_list2.pop(0)
     
-    print(pl_list2)
-    
-    print("---------------------------")
+    #Check creation of pl_list2
+    # print(pl_list2)
 
+    #Create empty list to hold profit/loss changes as they are calculated
     pl_difference = []
 
     pl_zip = zip(pl_list1, pl_list2)
     for pl_list1, pl_list2 in pl_zip:
             pl_difference.append(float(pl_list2)-float(pl_list1))
+    
+    #Check creation of list holding profit/loss changes
+    # print(pl_difference)
 
+    #Calculate the average profit/loss change
+    pl_avg_change = round(sum(pl_difference) / len(pl_difference), 2)
+    # print(pl_avg_change)
+
+    #Find the max value in pl_difference list
+    pl_change_max = max(pl_difference)
+
+    #Find the min value in pl_difference list
+    pl_change_min = min(pl_difference)
 
     print("Total Months: " + str(total_months))
     print("Total Profit/Loss: $" + str(net_profit_loss))
-    print(pl_difference)
+    print("Average Change: $ " + str(pl_avg_change))
+    print("Greatest Increase in Profits: date here ($" + str(pl_change_max) + ")")
+    print("Greatest Decrease in Profits: date here ($" + str(pl_change_min) + ")")
+    
 
 bankfile.close()
