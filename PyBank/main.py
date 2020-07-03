@@ -101,11 +101,19 @@ with open(file_path, "r") as bankfile:
     #Check the new variable for the date matching the min
     # print(pl_change_min_date)
 
-    print("Total Months: " + str(total_months))
-    print("Total Profit/Loss: $" + str(round(net_profit_loss)))
-    print("Average Change: $ " + str(pl_avg_change))
-    print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")")
-    print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(round(pl_change_min)) + ")")
-    
+print("Total Months: " + str(total_months))
+print("Total Profit/Loss: $" + str(round(net_profit_loss)))
+print("Average Change: $ " + str(pl_avg_change))
+print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")")
+print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(round(pl_change_min)) + ")")
 
-bankfile.close()
+new_file_path = os.path.join("Output", "Financial_Analysis.txt")
+with open(new_file_path, "w+") as analysisfile:
+    # csv_writer = csv.writer(analysisfile)
+    print("Financial Analysis", file=analysisfile)
+    print("---------------------------", file=analysisfile)
+    print("Total Months: " + str(total_months), file=analysisfile)
+    print("Total Profit/Loss: $" + str(round(net_profit_loss)), file=analysisfile)
+    print("Average Change: $ " + str(pl_avg_change), file=analysisfile)
+    print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")", file=analysisfile)
+    print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(round(pl_change_min)) + ")", file=analysisfile)
