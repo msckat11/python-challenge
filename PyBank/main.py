@@ -2,11 +2,14 @@
 import os
 import csv
 
-#
+#Tell it where to get the csv file
 file_path = os.path.join("Resources", "budget_data.csv")
+
+#Create variables to count months and net profit loss later
 total_months = 0
 net_profit_loss = 0
 
+#Create empty lists and dictionaries to fill later
 months = []
 raw_pl_list = []
 pl_list1 = []
@@ -14,9 +17,11 @@ pl_list2 = []
 date_change_dict = {}
 date_change_dict = dict()
 
+#Print out heading
 print("Financial Analysis")
 print("---------------------------")
 
+#Open the csv file and read it
 with open(file_path, "r") as bankfile:
     csv_reader = csv.reader(bankfile, delimiter=",")
     csv_header = next(bankfile)
@@ -32,7 +37,6 @@ with open(file_path, "r") as bankfile:
 
         #Pull each month's date and put them in the months list
         months.append(row[0])
-
     
     #Check creation of raw list
     # print(raw_pl_list)
@@ -48,7 +52,6 @@ with open(file_path, "r") as bankfile:
     # print(pl_list1)
     
     #Creating the second zip list from the raw data list
-
     pl_list2 = raw_pl_list.copy()
     pl_list2.pop(0)
     
@@ -109,7 +112,6 @@ print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(r
 
 new_file_path = os.path.join("Output", "Financial_Analysis.txt")
 with open(new_file_path, "w+") as analysisfile:
-    # csv_writer = csv.writer(analysisfile)
     print("Financial Analysis", file=analysisfile)
     print("---------------------------", file=analysisfile)
     print("Total Months: " + str(total_months), file=analysisfile)
