@@ -6,9 +6,6 @@ from collections import defaultdict
 #Tell it where to get the csv file
 file_path = os.path.join("Resources", "election_data.csv")
 
-# #Create variables to count votes
-# total_votes = 0
-
 #Create empty lists and dictionaries to fill later
 init_candidates = []
 candidate_dict = defaultdict(int)
@@ -55,7 +52,6 @@ elif Li_votes > Tooley_votes:
 else:
         winner = "O'Tooley"
 
-
 print("Election Results")
 print("---------------------------")
 print("Total Votes: " + str(all_votes))
@@ -69,13 +65,13 @@ print("Winner: " + winner)
 
 new_file_path = os.path.join("Analysis", "election_analysis.txt")
 with open(new_file_path, "w+") as analysisfile:
-    print("Election Results")
-    print("---------------------------")
-    print("Total Votes: " + str(all_votes))
-    print("---------------------------")
-    print("Khan: " + str(Khan_percent) + "%" + " (" + str(Khan_votes) + ")")
-    print("Correy: " + str(Correy_percent) + "%" + " (" + str(Correy_votes) + ")")
-    print("Li: " + str(Li_percent) + "%" + " (" + str(Li_votes) + ")")
-    print("O'Tooley: " + str(Tooley_percent) + "%" + " (" + str(Tooley_votes) + ")")
-    print("---------------------------")
-    print("Winner: " + winner)
+    print("Election Results", file=analysisfile)
+    print("---------------------------", file=analysisfile)
+    print("Total Votes: " + str(all_votes), file=analysisfile)
+    print("---------------------------", file=analysisfile)
+    print("Khan: " + str(Khan_percent) + "%" + " (" + str(Khan_votes) + ")", file=analysisfile)
+    print("Correy: " + str(Correy_percent) + "%" + " (" + str(Correy_votes) + ")", file=analysisfile)
+    print("Li: " + str(Li_percent) + "%" + " (" + str(Li_votes) + ")", file=analysisfile)
+    print("O'Tooley: " + str(Tooley_percent) + "%" + " (" + str(Tooley_votes) + ")", file=analysisfile)
+    print("---------------------------", file=analysisfile)
+    print("Winner: " + winner, file=analysisfile)
