@@ -1,24 +1,23 @@
 # Import libraries
 import os
 import csv
+import collections
 
 #Tell it where to get the csv file
 file_path = os.path.join("Resources", "election_data.csv")
 
 #Create variables to count votes
 total_votes = 0
-cand1 = 0
-cand2 = 0
-cand3 = 0
-cand4 = 0
 
 #Create empty lists and dictionaries to fill later
-candidates = []
-#  = []
-#  = []
-#  = []
-# date_change_dict = {}
-# date_change_dict = dict()
+init_candidates = []
+Khan_votes = []
+Correy_votes = []
+Li_votes = []
+Tooley_votes = []
+
+vote_count = {}
+vote_count = dict()
 
 #Print out heading
 print("Election Results")
@@ -27,22 +26,46 @@ print("---------------------------")
 # #Open the csv file and read it
 with open(file_path, "r") as vote_file:
     csv_reader = csv.reader(vote_file, delimiter=",")
-#     csv_header = next(votefile)
-#     for row in csv_reader:
-#         #Find Total Months and store in variable
-#         total_months = total_months + 1
+    csv_header = next(vote_file)
+    for row in csv_reader:
+        #Find Total Votes and store in variable
+        total_votes = total_votes + 1
+        
+        # #Find net profit/loss by adding each month's profit/loss to the last
+        # net_profit_loss = net_profit_loss + float(row[1])
 
-#         #Find net profit/loss by adding each month's profit/loss to the last
-#         net_profit_loss = net_profit_loss + float(row[1])
+        #Pull all candidate names from the csv file and put them in the init_candidates list
+        init_candidates.append(row[2])
 
-#         #Pull all profit/loss values from each month and put them in the raw_pl_list
-#         raw_pl_list.append(row[1])
+        # #Count each candidate in init_candidates
+        for name in init_candidates:
+            if name == "Khan":
+                Khan_votes.append(name)
+                # Khan_votes = Khan_votes + 1
+            elif name == "Correy":
+                Correy_votes.append(name)
+            elif name == "Li":
+                Li_votes.append(name)
+            elif name == "O'Tooley":
+                Tooley_votes.append(name)    
+            else:
+                Other_votes.append(name)
 
-#         #Pull each month's date and put them in the months list
-#         months.append(row[0])
+
+                # Khan_total = Khan_votes.count()
+                # print(Khan_total)
+        
+
+        
+        # for name in init_candidates:
+        #    vote_count[name] += 1
+
+     
+     
+
     
-#     #Check creation of raw list
-#     # print(raw_pl_list)
+        # Check creation of init_candidates list - LOL, OMG NOT A GOOD IDEA FOR LARGE DATA SETS
+        # print(init_candidates) - DONT DO IT
 
 #     #Check creation of months list
 #     # print(months)
