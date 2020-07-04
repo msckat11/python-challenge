@@ -1,7 +1,7 @@
 # Import libraries
 import os
 import csv
-import collections
+from collections import defaultdict
 
 #Tell it where to get the csv file
 file_path = os.path.join("Resources", "election_data.csv")
@@ -15,9 +15,9 @@ Khan_votes = []
 Correy_votes = []
 Li_votes = []
 Tooley_votes = []
+Other_votes = []
 
-vote_count = {}
-vote_count = dict()
+vote_count = defaultdict(int)
 
 #Print out heading
 print("Election Results")
@@ -28,28 +28,36 @@ with open(file_path, "r") as vote_file:
     csv_reader = csv.reader(vote_file, delimiter=",")
     csv_header = next(vote_file)
     for row in csv_reader:
+        init_candidates.append(row[2])
+print(init_candidates)
+
+for name in init_candidates:
+        vote_count[name] += 1
+print(vote_count)
+
+Khan_votes = vote_count["Khan"]
+print(Khan_votes)
+Correy_votes = vote_count["Correy"]
+print(Correy_votes)
+Li_votes = vote_count["Li"]
+print(Li_votes)
+Tooley_votes = vote_count["O'Tooley"]
+print(Tooley_votes)
+        
+all_votes = Khan_votes + Correy_votes + Li_votes + Tooley_votes
+print(all_votes)
+
+
         #Find Total Votes and store in variable
-        total_votes = total_votes + 1
+        # total_votes = total_votes + 1
         
         # #Find net profit/loss by adding each month's profit/loss to the last
         # net_profit_loss = net_profit_loss + float(row[1])
 
-        #Pull all candidate names from the csv file and put them in the init_candidates list
-        init_candidates.append(row[2])
+        # #Pull all candidate names from the csv file and put them in the init_candidates list
+        # init_candidates.append(row[2])
 
         # #Count each candidate in init_candidates
-        for name in init_candidates:
-            if name == "Khan":
-                Khan_votes.append(name)
-                # Khan_votes = Khan_votes + 1
-            elif name == "Correy":
-                Correy_votes.append(name)
-            elif name == "Li":
-                Li_votes.append(name)
-            elif name == "O'Tooley":
-                Tooley_votes.append(name)    
-            else:
-                Other_votes.append(name)
 
 
                 # Khan_total = Khan_votes.count()
@@ -130,7 +138,10 @@ with open(file_path, "r") as vote_file:
 #     #Check the new variable for the date matching the min
 #     # print(pl_change_min_date)
 
-print("Total Votes: " + str(total_votes))
+# print("Total Votes: " + str(total_votes))
+
+
+
 # print("Total Profit/Loss: $" + str(round(net_profit_loss)))
 # print("Average Change: $ " + str(pl_avg_change))
 # print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")")
