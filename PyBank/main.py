@@ -110,7 +110,7 @@ print("Average Change: $ " + str(pl_avg_change))
 print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")")
 print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(round(pl_change_min)) + ")")
 
-new_file_path = os.path.join("Output", "Financial_Analysis.txt")
+new_file_path = os.path.join("Analysis", "Financial_Analysis.txt")
 with open(new_file_path, "w+") as analysisfile:
     print("Financial Analysis", file=analysisfile)
     print("---------------------------", file=analysisfile)
