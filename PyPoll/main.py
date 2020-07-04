@@ -13,10 +13,6 @@ file_path = os.path.join("Resources", "election_data.csv")
 init_candidates = []
 candidate_dict = defaultdict(int)
 
-#Print out heading
-print("Election Results")
-print("---------------------------")
-
 # #Open the csv file and read it
 with open(file_path, "r") as vote_file:
     csv_reader = csv.reader(vote_file, delimiter=",")
@@ -47,25 +43,39 @@ Correy_percent = round((Correy_votes / all_votes * 100), 3)
 Li_percent = round((Li_votes / all_votes * 100), 3)
 Tooley_percent = round((Tooley_votes / all_votes * 100), 3)
 
+if Khan_votes > Correy_votes:
+        if Khan_votes > Li_votes:
+                if Khan_votes > Tooley_votes:
+                        winner = "Kahn"
+elif Correy_votes > Li_votes:
+        if Correy_votes > Tooley_votes:
+                winner = "Correy"
+elif Li_votes > Tooley_votes:
+        winner = "Li"
+else:
+        winner = "O'Tooley"
+
+
+print("Election Results")
+print("---------------------------")
 print("Total Votes: " + str(all_votes))
 print("---------------------------")
 print("Khan: " + str(Khan_percent) + "%" + " (" + str(Khan_votes) + ")")
 print("Correy: " + str(Correy_percent) + "%" + " (" + str(Correy_votes) + ")")
 print("Li: " + str(Li_percent) + "%" + " (" + str(Li_votes) + ")")
 print("O'Tooley: " + str(Tooley_percent) + "%" + " (" + str(Tooley_votes) + ")")
+print("---------------------------")
+print("Winner: " + winner)
 
-
-# print("Total Profit/Loss: $" + str(round(net_profit_loss)))
-# print("Average Change: $ " + str(pl_avg_change))
-# print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")")
-# print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(round(pl_change_min)) + ")")
-
-# new_file_path = os.path.join("Analysis", "Financial_Analysis.txt")
-# with open(new_file_path, "w+") as analysisfile:
-#     print("Financial Analysis", file=analysisfile)
-#     print("---------------------------", file=analysisfile)
-#     print("Total Months: " + str(total_months), file=analysisfile)
-#     print("Total Profit/Loss: $" + str(round(net_profit_loss)), file=analysisfile)
-#     print("Average Change: $ " + str(pl_avg_change), file=analysisfile)
-#     print("Greatest Increase in Profits: " + str(pl_change_max_date) + " ($" + str(round(pl_change_max)) + ")", file=analysisfile)
-#     print("Greatest Decrease in Profits: " + str(pl_change_min_date) + " ($" + str(round(pl_change_min)) + ")", file=analysisfile)
+new_file_path = os.path.join("Analysis", "election_analysis.txt")
+with open(new_file_path, "w+") as analysisfile:
+    print("Election Results")
+    print("---------------------------")
+    print("Total Votes: " + str(all_votes))
+    print("---------------------------")
+    print("Khan: " + str(Khan_percent) + "%" + " (" + str(Khan_votes) + ")")
+    print("Correy: " + str(Correy_percent) + "%" + " (" + str(Correy_votes) + ")")
+    print("Li: " + str(Li_percent) + "%" + " (" + str(Li_votes) + ")")
+    print("O'Tooley: " + str(Tooley_percent) + "%" + " (" + str(Tooley_votes) + ")")
+    print("---------------------------")
+    print("Winner: " + winner)
